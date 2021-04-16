@@ -13,7 +13,7 @@ backup: $(DOT_ZSHRC_PATH)
 		rm $(DOT_ZSHRC_PATH); \
 	else \
 		echo "$(DOT_ZSHRC_PATH) is a file, moving to $(DOT_ZSHRC_PATH).old"; \
-		mv $(DOT_ZSHRC_PATH){,.old}; \
+		mv $(DOT_ZSHRC_PATH) $(DOT_ZSHRC_PATH).old; \
 	fi
 
 install:
