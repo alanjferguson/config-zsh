@@ -2,7 +2,7 @@
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/alanferguson/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -134,11 +134,23 @@ else
 	echo "exa isn't installed"
 fi
 
+# If nvim is available then set it up to do all the things!
+if type "nvim" > /dev/null; then
+	alias vim=nvim
+	export EDITOR=nvim
+	export VISUAL=nvim
+	export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
+else
+	echo "nvim isn't installed"
+fi
 
-alias vim='nvim'
+# setup rbenv if available
+if type "rbenv" > /dev/null; then
+	eval "$(rbenv init -)"
+fi
 
-export NVIM_LISTEN_ADDRESS=/tmp/nvimsocket
-
-eval "$(rbenv init -)"
-
+# setup fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Need to set this other GPG won't work
+export GPG_TTY=$(tty)
